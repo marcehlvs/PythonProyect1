@@ -1,0 +1,27 @@
+{% extends "entidades/index.html" %}
+{% block titulo %}
+    <h1 class="mb-5">Entregables</h1>
+{% endblock titulo %}
+
+{% block contenido %}
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Fecha de Entrega</th>
+            <th>Entregable</th>
+
+        </tr>
+    </thead>
+    <tbody>
+    {% for en in entregables %} #entregables es la clave diccionario del views
+        <tr>
+            <td>{{ en.nombre }}</td>
+            <td>{{ en.fechaEntrega}}</td>
+            <td>{{ en.entregado }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock contenido %}
