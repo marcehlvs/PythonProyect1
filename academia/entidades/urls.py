@@ -1,5 +1,10 @@
 from django.urls import path, include
 from entidades.views import *
+
+from django.contrib.auth.views import LogoutView
+
+
+
 urlpatterns = [
     path('', home, name='home'),
 
@@ -19,14 +24,26 @@ urlpatterns = [
 
     #Estudiantes
 
-    path('estudiantes/', estudiantes, name='estudiantes'),
     path('estudiantes/', EstudianteList.as_view(), name='estudiantes'),
+    path('estudianteCreate/', EstudianteCreate.as_view(), name='estudianteCreate'),
+    path('estudianteUpdate/<int:pk>/', EstudianteUpdate.as_view(), name='estudianteUpdate'),
+    path('estudianteDelete/<int:pk>/', EstudianteDelete.as_view(), name='estudianteDelete'),
+
+
 
     path('entregables/', entregables, name='entregables'),
     path('acerca/', acerca, name='acerca'),
 
-
+    #buscar
 
     path('buscarCursos/', buscarCursos, name='buscarCursos'),
     path('encontrarCursos/', encontrarCursos, name="encontrarCursos"),
+
+    #login/logout/registration
+
+    path('login/', loginRequest, name='login'),
+    path('logout/', LogoutView.as_view(template_name="entidades/logout.html"), name="logout"),
+
+    #registro
+    path('registro/', register, name="registro"),
     ]
